@@ -1,6 +1,7 @@
 package com.castilho.backend.servico;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class EstadoServico {
     }
 
     public void excluir(Long id){
-        Estado estado = estadoRepositorio.findById(id).get();
-
+        Estado estado = estadoRepositorio.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Estado não encontrado."));
         estadoRepositorio.delete(estado);
     }
 
