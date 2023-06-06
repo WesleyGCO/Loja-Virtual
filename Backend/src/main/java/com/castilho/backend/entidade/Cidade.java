@@ -25,6 +25,12 @@ public class Cidade {
 
     private String nome;
 
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "marcada")
+    private String marcada;
+
     @Column(name = "data_criacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
