@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,13 @@ public class PermissaoControle {
 
     // localhost:8080/permissao/ - com verbo post
     @PostMapping
-    public Permissao salvar(@RequestBody Permissao permissao){
-        return permissaoServico.salvar(permissao);
+    public Permissao inserir(@RequestBody Permissao permissao){
+        return permissaoServico.inserir(permissao);
+    }
+
+    @PutMapping("/")
+    public Permissao atualizar(@RequestBody Permissao permissao){
+        return permissaoServico.atualizar(permissao);
     }
 
     // localhost:8080/permissao/1 - com verbo delete
