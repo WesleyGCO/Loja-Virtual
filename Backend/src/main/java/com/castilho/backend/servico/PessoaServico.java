@@ -1,5 +1,6 @@
 package com.castilho.backend.servico;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,8 +20,16 @@ public class PessoaServico {
         return pessoaRepositorio.findAll();
     }
 
-    public Pessoa salvar(Pessoa pessoa){
-        return pessoaRepositorio.save(pessoa);
+    public Pessoa inserir(Pessoa pessoa){
+        pessoa.setDataCriacao(new Date());
+        Pessoa pessoaNova = pessoaRepositorio.saveAndFlush(pessoa);
+        return pessoaNova;
+    }
+
+    public Pessoa atualizar(Pessoa pessoa){
+        pessoa.setDataAtualizacao((new Date()));
+        Pessoa pessoaAtualizada = pessoaRepositorio.saveAndFlush(pessoa);
+        return pessoaAtualizada;
     }
 
     public void excluir(Long id){
