@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castilho.backend.entidade.Permissao;
 import com.castilho.backend.servico.PermissaoServico;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/permissao")
 @CrossOrigin
@@ -33,18 +35,18 @@ public class PermissaoControle {
 
     // localhost:8080/permissao/ - com verbo post
     @PostMapping
-    public Permissao inserir(@RequestBody Permissao permissao){
+    public Permissao inserir(@Valid @RequestBody Permissao permissao){
         return permissaoServico.inserir(permissao);
     }
 
     @PutMapping("/")
-    public Permissao atualizar(@RequestBody Permissao permissao){
+    public Permissao atualizar(@Valid @RequestBody Permissao permissao){
         return permissaoServico.atualizar(permissao);
     }
 
     // localhost:8080/permissao/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirPermissao(@PathVariable Long id){
+    public ResponseEntity<Object> excluirPermissao(@Valid @PathVariable Long id){
         try {
             permissaoServico.excluir(id);
             return ResponseEntity.ok("Permissão excluída com sucesso");

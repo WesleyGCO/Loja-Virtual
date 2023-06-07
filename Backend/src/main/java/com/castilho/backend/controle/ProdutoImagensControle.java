@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.castilho.backend.entidade.ProdutoImagens;
 import com.castilho.backend.servico.ProdutoImagensServico;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/produtoImagens")
 @CrossOrigin
@@ -36,18 +38,18 @@ public class ProdutoImagensControle {
 
     // localhost:8080/produtoImagens/ - com verbo post
     @PostMapping("/")
-    public ProdutoImagens inserir(@RequestParam Long id, @RequestParam MultipartFile file) {
+    public ProdutoImagens inserir(@Valid @RequestParam Long id, @RequestParam MultipartFile file) {
         return produtoImagensServico.inserir(id, file);
     }
 
     @PutMapping("/")
-    public ProdutoImagens atualizar(@RequestBody ProdutoImagens produtoImagens) {
+    public ProdutoImagens atualizar(@Valid @RequestBody ProdutoImagens produtoImagens) {
         return produtoImagensServico.atualizar(produtoImagens);
     }
 
     // localhost:8080/produtoImagens/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirProdutoImagens(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirProdutoImagens(@Valid @PathVariable Long id) {
         try {
             produtoImagensServico.excluir(id);
             return ResponseEntity.ok("Imagem de produto excluída com sucesso");

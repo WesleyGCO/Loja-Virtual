@@ -21,6 +21,8 @@ import com.castilho.backend.entidade.Estado;
 import com.castilho.backend.servico.EstadoServico;
 import com.opencsv.exceptions.CsvValidationException;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/estado")
 @CrossOrigin
@@ -37,24 +39,24 @@ public class EstadoControle {
 
     // localhost:8080/estado/ - com verbo post
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado estado){
+    public Estado inserir(@Valid @RequestBody Estado estado){
         return estadoServico.inserir(estado);
     }
 
     @PostMapping("/importarCsv")
-    public String importarCsv(@RequestParam("caminhoArquivoCsv") String caminhoArquivoCsv) throws CsvValidationException{
+    public String importarCsv(@Valid @RequestParam("caminhoArquivoCsv") String caminhoArquivoCsv) throws CsvValidationException{
         estadoServico.importarDadosCsv(caminhoArquivoCsv);
         return "Dados importados com sucesso!";
     }
 
     @PutMapping("/")
-    public Estado atualizar(@RequestBody Estado estado){
+    public Estado atualizar(@Valid @RequestBody Estado estado){
         return estadoServico.atualizar(estado);
     }
 
     // localhost:8080/estado/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirEstado(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirEstado(@Valid @PathVariable Long id) {
         try {
             estadoServico.excluir(id);
             return ResponseEntity.ok("Estado excluído com sucesso");

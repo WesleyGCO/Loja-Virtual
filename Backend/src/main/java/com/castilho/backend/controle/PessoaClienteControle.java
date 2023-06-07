@@ -12,6 +12,8 @@ import com.castilho.backend.dto.PessoaClienteRequisicaoDTO;
 import com.castilho.backend.entidade.Pessoa;
 import com.castilho.backend.servico.PessoaClienteServico;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/pessoaCliente")
 @CrossOrigin
@@ -21,7 +23,7 @@ public class PessoaClienteControle {
     private PessoaClienteServico pessoaClienteServico;
 
     @PostMapping("/")
-    public Pessoa inserir(@RequestBody PessoaClienteRequisicaoDTO pessoaClienteRequisicaoDTO){
+    public Pessoa inserir(@Valid @RequestBody PessoaClienteRequisicaoDTO pessoaClienteRequisicaoDTO){
         return pessoaClienteServico.registrar(pessoaClienteRequisicaoDTO);
     }
 }

@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castilho.backend.entidade.Pessoa;
 import com.castilho.backend.servico.PessoaServico;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/pessoa")
 @CrossOrigin
@@ -35,18 +37,18 @@ public class PessoaControle {
 
     // localhost:8080/pessoa/ - com verbo post
     @PostMapping
-    public Pessoa inserir(@RequestBody Pessoa pessoa){
+    public Pessoa inserir(@Valid @RequestBody Pessoa pessoa){
         return pessoaServico.inserir(pessoa);
     }
 
     @PutMapping("/")
-    public Pessoa atualizar(@RequestBody Pessoa pessoa){
+    public Pessoa atualizar(@Valid @RequestBody Pessoa pessoa){
         return pessoaServico.atualizar(pessoa);
     }
 
     // localhost:8080/pessoa/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirPessoa(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirPessoa(@Valid @PathVariable Long id) {
         try {
             pessoaServico.excluir(id);
             return ResponseEntity.ok("Pessoa excluída com sucesso");

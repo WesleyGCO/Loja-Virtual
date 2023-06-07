@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.castilho.backend.servico.CidadeServico;
 import com.opencsv.exceptions.CsvValidationException;
+
+import jakarta.validation.Valid;
+
 import com.castilho.backend.entidade.Cidade;
 
 @RestController
@@ -33,24 +36,25 @@ public class CidadeControle {
 
     // localhost:8080/cidade/ - com verbo post
     @PostMapping("/")
-    public Cidade inserir(@RequestBody Cidade cidade){
+    public Cidade inserir(@Valid @RequestBody Cidade cidade){
         return cidadeServico.inserir(cidade);
     }
 
     @PostMapping("/importarCSV")
-    public String importarCsv(@RequestParam("caminhoArquivoCsv") String caminhoArquivoCsv) throws CsvValidationException, NumberFormatException{
+    public String importarCsv(
+            @Valid @RequestParam("caminhoArquivoCsv") String caminhoArquivoCsv) throws CsvValidationException, NumberFormatException{
         cidadeServico.importarDadosCsv(caminhoArquivoCsv);
         return "Dados do CSV importados com sucesso!";
     }
 
     @PutMapping("/")
-    public Cidade atualizar(@RequestBody Cidade cidade){
+    public Cidade atualizar(@Valid @RequestBody Cidade cidade){
         return cidadeServico.atualizar(cidade);
     }
 
     // localhost:8080/cidade/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public void excluir(Long id){
+    public void excluir(@Valid Long id){
         cidadeServico.excluir(id);
     }
 

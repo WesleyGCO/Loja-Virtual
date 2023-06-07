@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castilho.backend.entidade.Categoria;
 import com.castilho.backend.servico.CategoriaServico;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/categoria")
 @CrossOrigin
@@ -34,18 +36,18 @@ public class CategoriaControle {
 
     // localhost:8080/categoria/ - com verbo post
     @PostMapping("/")
-    public Categoria inserir(@RequestBody Categoria categoria) {
+    public Categoria inserir(@Valid @RequestBody Categoria categoria) {
         return categoriaServico.inserir(categoria);
     }
 
     @PutMapping("/")
-    public Categoria atualizar(@RequestBody Categoria categoria) {
+    public Categoria atualizar(@Valid @RequestBody Categoria categoria) {
         return categoriaServico.atualizar(categoria);
     }
 
     // localhost:8080/categoria/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirCategoria(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirCategoria(@Valid @PathVariable Long id) {
         try {
             categoriaServico.excluir(id);
             return ResponseEntity.ok("Categoria excluída com sucesso");

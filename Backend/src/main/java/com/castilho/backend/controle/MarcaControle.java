@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castilho.backend.entidade.Marca;
 import com.castilho.backend.servico.MarcaServico;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/marca")
 @CrossOrigin
@@ -34,18 +36,18 @@ public class MarcaControle {
 
     // localhost:8080/marca/ - com verbo post
     @PostMapping("/")
-    public Marca inserir(@RequestBody Marca marca) {
+    public Marca inserir(@Valid @RequestBody Marca marca) {
         return marcaServico.inserir(marca);
     }
 
     @PutMapping("/")
-    public Marca atualizar(@RequestBody Marca marca) {
+    public Marca atualizar(@Valid @RequestBody Marca marca) {
         return marcaServico.atualizar(marca);
     }
 
     // localhost:8080/marca/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirMarca(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirMarca(@Valid @PathVariable Long id) {
         try {
             marcaServico.excluir(id);
             return ResponseEntity.ok("Marca excluída com sucesso");

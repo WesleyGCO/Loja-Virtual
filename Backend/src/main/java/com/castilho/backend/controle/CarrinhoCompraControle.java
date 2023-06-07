@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castilho.backend.entidade.CarrinhoCompra;
 import com.castilho.backend.servico.CarrinhoCompraServico;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/carrinhoCompra")
@@ -35,18 +37,18 @@ public class CarrinhoCompraControle {
 
     // localhost:8080/carrinhoCompra/ - com verbo post
     @PostMapping("/")
-    public CarrinhoCompra inserir(@RequestBody CarrinhoCompra carrinhoCompra) {
+    public CarrinhoCompra inserir(@Valid @RequestBody CarrinhoCompra carrinhoCompra) {
         return carrinhoCompraServico.inserir(carrinhoCompra);
     }
 
     @PutMapping("/")
-    public CarrinhoCompra atualizar(@RequestBody CarrinhoCompra carrinhoCompra) {
+    public CarrinhoCompra atualizar(@Valid @RequestBody CarrinhoCompra carrinhoCompra) {
         return carrinhoCompraServico.atualizar(carrinhoCompra);
     }
 
     // localhost:8080/carrinhoCompra/1 - com verbo delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirCarrinhoCompra(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirCarrinhoCompra(@Valid @PathVariable Long id) {
         try {
             carrinhoCompraServico.excluir(id);
             return ResponseEntity.ok("Carrinho de compra excluído com sucesso");
