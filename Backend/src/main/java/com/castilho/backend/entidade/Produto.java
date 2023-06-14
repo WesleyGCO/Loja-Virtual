@@ -25,18 +25,19 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O campo nome é obrigatório")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
-    @Size(min = 2, max = 250, message = "O campo descrição longa deve ter entre 2 e 250 caracteres")
+    @Size(min = 2, max = 250)
+    @NotBlank(message = "{descricao.not.blank}")
     @Column(name = "descricaoLonga")
     private String descricaoLonga;
 
-    @NotBlank(message = "O valor custo não pode ficar vazio")
+    @NotBlank(message = "{valorCusto.not.blank}")
     @Column(name = "valorCusto")
     private double valorCusto;
 
-    @NotBlank(message = "O valor venda não pode ficar vazio")
+    @NotBlank(message = "{valorVenda.not.blank}")
     @Column(name = "valorVenda")
     private double valorVenda;
 

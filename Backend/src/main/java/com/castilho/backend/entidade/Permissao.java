@@ -22,7 +22,7 @@ public class Permissao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome da permissão é obrigatório")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
     @Column(name = "data_criacao")

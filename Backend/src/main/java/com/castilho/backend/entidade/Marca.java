@@ -22,7 +22,7 @@ public class Marca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome é obrigatório")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
     @Column(name = "data_criacao")

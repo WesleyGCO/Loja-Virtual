@@ -23,10 +23,11 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome e obrigatorio")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
-    @Size(max = 2, message = "O tamanho maximo e de 2 caracteres")
+    @Size(min = 2, max = 2)
+    @NotBlank(message = "{sigla.not.blank}")
     @Column(name = "sigla")
     private String sigla;
 

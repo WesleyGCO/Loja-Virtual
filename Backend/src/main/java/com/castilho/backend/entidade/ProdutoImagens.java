@@ -24,7 +24,7 @@ public class ProdutoImagens{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O campo nome não deve ser vazio")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
     @Column(name = "data_criacao")

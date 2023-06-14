@@ -30,27 +30,29 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome é obrigatório")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
-    @NotBlank(message = "O CPF é obrigatório")
+    @NotBlank(message = "{cpf.not.blank}")
     @Pattern(regexp = "\\d{3}.\\d{3}.\\d{3}-\\d{2}", message = "O CPF deve estar no formato 000.000.000-00")
     @Column(name = "cpf")
     private String cpf;
 
-    @Email(message = "O email deve ser um endereço válido")
+    @Email(message = "O email é inválido")
+    @NotBlank(message = "{email.not.blank}")
     @Column(name = "email")
     private String email;
 
-    @Size(min = 5, max = 20, message = "A senha deve ter entre 5 e 20 caracteres.")
+    @Size(min = 5, max = 20)
+    @NotBlank(message = "{senha.not.blank}")
     @Column(name = "senha")
     private String senha;
 
-    @NotBlank(message = "Endereço não pode ficar vazio")
+    @NotBlank(message = "{endereco.not.blank}")
     @Column(name = "endereco")
     private String endereco;
 
-    @NotBlank(message = "O CEP não pode ficar vazio")
+    @NotBlank(message = "{cep.not.blank}")
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "O CEP deve estar no formato 00000-000")
     @Column(name = "cep")
     private String cep;
