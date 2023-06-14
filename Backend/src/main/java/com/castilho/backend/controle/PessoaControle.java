@@ -30,13 +30,13 @@ public class PessoaControle {
     private PessoaServico pessoaServico;
 
     // localhost:8080/pessoa/ - com verbo get
-    @GetMapping
+    @GetMapping("/")
     public List<Pessoa> listarTodos(){
         return pessoaServico.listarTodos();
     }
 
     // localhost:8080/pessoa/ - com verbo post
-    @PostMapping
+    @PostMapping("/")
     public Pessoa inserir(@Valid @RequestBody Pessoa pessoa){
         return pessoaServico.inserir(pessoa);
     }
