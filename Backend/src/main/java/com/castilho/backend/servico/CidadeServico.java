@@ -39,9 +39,7 @@ public class CidadeServico {
 
     public Cidade atualizar(Cidade cidade){
         cidade.setDataAtualizacao(new Date());
-        Cidade cidadeAtualizada = cidadeRepositorio.saveAndFlush(cidade);
-        return cidadeAtualizada;
-
+        return cidadeRepositorio.saveAndFlush(cidade);
     }
 
     public void excluir(Long id){

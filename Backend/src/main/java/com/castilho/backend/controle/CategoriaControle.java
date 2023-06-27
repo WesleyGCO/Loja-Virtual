@@ -46,7 +46,7 @@ public class CategoriaControle {
     }
 
     // localhost:8080/categoria/1 - com verbo delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/")
     public ResponseEntity<Object> excluirCategoria(@Valid @PathVariable Long id) {
         try {
             categoriaServico.excluir(id);
