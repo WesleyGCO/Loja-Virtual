@@ -37,4 +37,8 @@ public class PessoaServico {
         .orElseThrow(() -> new NoSuchElementException("Pessoa não encontrada."));
         pessoaRepositorio.delete(pessoa);
     }
+
+    public List<Pessoa> findByCidade_id(Long idCidade){
+        return pessoaRepositorio.findByCidade_id(idCidade);
+    }
 }
